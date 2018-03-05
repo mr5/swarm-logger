@@ -1,0 +1,7 @@
+test.py
+venv/
+.idea/
+__pycache__/
+*.log
+swarmlogs.pid
+swarmlogger.pid
