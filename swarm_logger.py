@@ -9,7 +9,7 @@ from collector import Collector
 class Manager:
     def __init__(self, client):
         self.client = client
-        self.log_label_prefix = 'mr5.swarmlogger.type'
+        self.log_label_prefix = 'mr5.swarmlogger.'
         self.threads = {}
 
     def main(self):
