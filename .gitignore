@@ -4,3 +4,4 @@ venv/
 __pycache__/
 *.log
 swarm-logger.pid
+*.pyc
