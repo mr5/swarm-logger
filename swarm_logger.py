@@ -39,8 +39,10 @@ class Manager:
                         continue
                     for label_key in self.threads[container.id]:
                         if label_key not in container.labels:
-                            self.threads[container.id][label_key].stop()
                             del self.threads[container.id][label_key]
+                            if self.threads[container.id][label_key].is_alive():
+                                self.threads[container.id][label_key].stop()
+                                alive_threads -= 1
                         if len(self.threads[container.id]) <= 0:
                             del self.threads[container.id]
                 print('threads: ' + str(alive_threads) + '/' + str(len(self.threads)))
