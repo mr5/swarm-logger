@@ -45,7 +45,8 @@ class Collector(threading.Thread):
 
     def open_container_log_file(self, container, log_type):
         labels = container.labels
-        log_path = self.log_path + labels['com.docker.compose.project']
+        print(labels)
+        log_path = self.log_path + labels['com.docker.compose.project'] + '/' + labels['com.docker.compose.service']
         log_file = log_path + '/' + labels['com.docker.compose.service'] + '_' + labels[
             'com.docker.compose.container-number'] + '.' + log_type
         if not os.path.exists(log_path):
