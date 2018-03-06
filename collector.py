@@ -2,6 +2,7 @@
 import threading
 import os
 import errno
+from docker.errors import APIError
 from urllib3.exceptions import HTTPError
 
 
@@ -34,7 +35,13 @@ class Collector(threading.Thread):
             if self.reopen_event.isSet():
                 self.reopen_log_file()
                 self.reopen_event.clear()
-            self.collect_container_logs(container=self.container, log_type=self.log_type)
+            try:
+                self.collect_container_logs(container=self.container, log_type=self.log_type)
+            except APIError as apiErr:
+                if apiErr.is_client_error():
+                    self.stop()
+                    continue
+                print(apiErr)
 
     def open_container_log_file(self, container, log_type):
         labels = container.labels
