@@ -34,12 +34,7 @@ class Collector(threading.Thread):
             if self.reopen_event.isSet():
                 self.reopen_log_file()
                 self.reopen_event.clear()
-            try:
-                self.collect_container_logs(container=self.container, log_type=self.log_type)
-            except HTTPError as he:
-                print(he)
-            except Exception as e:
-                print(e)
+            self.collect_container_logs(container=self.container, log_type=self.log_type)
 
     def open_container_log_file(self, container, log_type):
         labels = container.labels
