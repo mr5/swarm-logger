@@ -6,4 +6,4 @@ RUN apk update --no-cache
 RUN apk add logrotate
 COPY ./logrotate.conf /etc/logrotate.d/swarm-logger
 CMD python ./swarm_logger.py
-VOLUME ["/var/log/swarm-logger"]
+VOLUME ["/acs/log/swarm-logger"]
