@@ -7,7 +7,7 @@ from urllib3.exceptions import HTTPError
 
 class Collector(threading.Thread):
     def __init__(self, client, container, log_type, log_path='/var/log/swarm-logger/'):
-        super().__init__()
+        super(Collector, self).__init__()
         self.stop_event = threading.Event()
         self.reopen_event = threading.Event()
         self.client = client
@@ -58,4 +58,4 @@ class Collector(threading.Thread):
         while True:
             for line in container.logs(stream=True, stderr=log_type == 'both' or log_type == 'err',
                                        stdout=log_type == 'both' or log_type == 'out'):
-                self.file.write(line.decode("utf-8"))
+                self.file.write(str(line))
