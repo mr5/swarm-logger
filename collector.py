@@ -7,7 +7,7 @@ from urllib3.exceptions import HTTPError
 
 
 class Collector(threading.Thread):
-    def __init__(self, client, container, log_type, log_path='/var/log/swarm-logger/'):
+    def __init__(self, client, container, log_type, log_path='/acs/log/swarm-logger/'):
         super(Collector, self).__init__()
         self.stop_event = threading.Event()
         self.reopen_event = threading.Event()
