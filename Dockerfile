@@ -7,5 +7,5 @@ RUN pip install -r requirements.txt
 RUN apk update --no-cache
 RUN apk add logrotate
 COPY ./logrotate.conf /etc/logrotate.d/swarm-logger
-CMD python ./swarm_logger.py
+CMD /usr/sbin/crond && python ./swarm_logger.py
 VOLUME ["/var/log/swarm-logger"]
